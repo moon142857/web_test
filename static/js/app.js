@@ -108,8 +108,8 @@ async function loadInspiration() {
 }
 
 function emojiFor(cat) {
-  const map = { '生活类': '🎒', '自然类': '🌿', '环保类': '♻️', '人文类': '🏛️' };
-  return map[cat] || '📁';
+  const map = { '生活类': '◆', '自然类': '✦', '环保类': '●', '人文类': '▲' };
+  return map[cat] || '◇';
 }
 
 function useTemplate(title, grade, subjects) {
