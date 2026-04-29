@@ -45,7 +45,6 @@ function navigate(page) {
   if (target) target.style.display = 'block';
   document.querySelectorAll('.nav-link').forEach(n => n.classList.toggle('active', n.dataset.page === page));
   if (page === 'dashboard') loadDashboardInspiration();
-  if (page === 'inspiration') loadInspirationStandalone();
   if (page === 'library') loadLibrary();
   if (page === 'community') loadCommunity();
   if (page === 'implement') loadImplementProjects();
@@ -66,12 +65,6 @@ async function api(path, opts = {}) {
 /* ========== DASHBOARD INSPIRATION ====== */
 function loadDashboardInspiration() {
   const grid = document.getElementById('inspirationGrid');
-  if (!grid) return;
-  grid.innerHTML = renderInspirationCards(MOCK_TEMPLATES);
-}
-
-function loadInspirationStandalone() {
-  const grid = document.getElementById('inspirationGridStandalone');
   if (!grid) return;
   grid.innerHTML = renderInspirationCards(MOCK_TEMPLATES);
 }
@@ -101,7 +94,6 @@ function useTemplate(title, grade, subjects) {
 
 /* ========== DESIGN ========== */
 document.getElementById('btnGenerate').addEventListener('click', generateProject);
-document.getElementById('btnSaveDesign').addEventListener('click', saveDesign);
 document.getElementById('aiSend').addEventListener('click', sendAiMessage);
 document.getElementById('aiInput').addEventListener('keydown', e => { if (e.key === 'Enter') sendAiMessage(); });
 
@@ -295,13 +287,12 @@ function showProjectDetail(pid) {
   if (!p) return;
   document.getElementById('libDetail').innerHTML = `
     <div class="lib-detail">
-      <h3>${p.title}</h3>
+      <h3>##《${p.title}》</h3>
       <div class="meta">${p.grade} · ${p.semester} · ${p.project_type} · ${p.main_subject}</div>
       <div class="lib-detail-actions">
-        <button class="btn-primary btn-sm" onclick="alert('Word 导出功能开发中')">下载 Word</button>
-        <button class="btn-secondary btn-sm" onclick="navigate('design')">重新生成</button>
-        <button class="btn-secondary btn-sm" onclick="enterImplement(${p.id})">进入实施</button>
-        <button class="btn-secondary btn-sm" style="color:#dc2626;border-color:#fecaca" onclick="deleteProject(${p.id})">删除</button>
+        <button class="btn-text" onclick="alert('编辑功能开发中')">✎ 编辑</button>
+        <button class="btn-save" onclick="alert('保存功能开发中')">💾 保存修改</button>
+        <button class="btn-secondary btn-sm" onclick="alert('Word 导出功能开发中')">下载 Word</button>
       </div>
       <div class="lib-content">${p.ai_content || '暂无 AI 生成内容'}</div>
     </div>
@@ -347,6 +338,11 @@ function loadCommunity() {
       <div class="post-body">${post.content}</div>
       <div class="post-footer">
         <span class="post-tag">${post.tags || '讨论'}</span>
+        <span style="margin-left:auto;display:flex;gap:12px;align-items:center;color:#94a3b8;font-size:12px;">
+          <span>♡ ${Math.floor(Math.random()*30)}</span>
+          <span>💬 ${Math.floor(Math.random()*15)}</span>
+          <span>☆ ${Math.floor(Math.random()*20)}</span>
+        </span>
         <span class="post-del" onclick="deletePost(${post.id})">删除</span>
       </div>
     </div>

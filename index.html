@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>跨学科 AI Studio</title>
-<link rel="stylesheet" href="static/css/style.css?v=8">
+<link rel="stylesheet" href="static/css/style.css?v=9">
 </head>
 <body>
 
@@ -17,13 +17,13 @@
     </div>
     <div class="nav-links">
       <a href="#" class="nav-link active" data-page="dashboard">首页</a>
-      <a href="#" class="nav-link" data-page="inspiration">项目灵感墙</a>
       <a href="#" class="nav-link" data-page="design">项目设计</a>
       <a href="#" class="nav-link" data-page="implement">项目实施</a>
       <a href="#" class="nav-link" data-page="library">我的项目库</a>
       <a href="#" class="nav-link" data-page="community">教研社区</a>
     </div>
     <div class="nav-user">
+      <div class="user-dot"></div>
       <div class="user-badge">翠微小学</div>
       <div class="user-avatar-sm"></div>
     </div>
@@ -42,7 +42,7 @@
   <!-- ====== DASHBOARD ====== -->
   <section class="page" id="page-dashboard">
     <div class="hero-section">
-      <div class="hero-badge">专为中小学教师打造的 AI 工具</div>
+      <div class="hero-badge"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--primary);margin-right:6px;vertical-align:middle;"></span>专为中小学教师打造的 AI 工具</div>
       <h1 class="hero-title">AI 赋能<span class="highlight">跨学科</span>项目设计</h1>
       <p class="hero-subtitle">让每一位教师都能设计专业的 PBL 项目</p>
       <button class="hero-btn" onclick="navigate('design')">
@@ -89,7 +89,7 @@
         <div class="step-card">
           <div class="step-icon">⚡</div>
           <div class="step-name">AI 生成</div>
-          <div class="step-desc">专业项目书</div>
+          <div class="step-desc">专业项目设计书</div>
         </div>
         <div class="step-arrow">›</div>
         <div class="step-card">
@@ -108,28 +108,19 @@
     </div>
   </section>
 
-  <!-- ====== INSPIRATION (standalone) ====== -->
-  <section class="page" id="page-inspiration" style="display:none">
-    <h2 class="section-title">项目灵感墙</h2>
-    <div class="inspiration-grid" id="inspirationGridStandalone"></div>
-    <div class="inspiration-footer">
-      <button class="btn-refresh" onclick="loadInspirationStandalone()">⟳ 换一批灵感</button>
-    </div>
-  </section>
-
   <!-- ====== DESIGN ====== -->
   <section class="page" id="page-design" style="display:none">
     <div class="design-topbar">
       <span class="status-tag">● 生成完成</span>
       <div class="design-actions">
         <button class="btn-text">✎ 编辑</button>
-        <button class="btn-save" onclick="saveDesign()">💾 保存到项目库</button>
+        <button class="btn-save" id="btnSaveDesign" onclick="saveDesign()">💾 保存到项目库</button>
       </div>
     </div>
     <div class="design-layout">
       <div class="design-form">
         <h3 class="form-title">填写项目信息</h3>
-        <p class="form-desc">请填写左侧信息，生成项目设计内容</p>
+        <p class="form-desc">请填写以下信息生成完整项目书</p>
         <div class="form-group">
           <label>年级</label>
           <select id="dGrade"><option>一年级</option><option>二年级</option><option>三年级</option><option>四年级</option><option selected>五年级</option><option>六年级</option></select>
@@ -150,7 +141,7 @@
           <textarea id="dMain" rows="2">语文·统编版 五年级下册第二单元</textarea>
         </div>
         <div class="form-group">
-          <label>真实情境或契机</label>
+          <label>真实情境或契机 <span style="color:#94a3b8;font-size:12px;font-weight:normal;">选填</span></label>
           <input type="text" id="dContext" placeholder="学校举办阅读节" value="学校举办阅读节">
         </div>
         <div class="form-group">
@@ -158,7 +149,7 @@
           <input type="text" id="dTopic" value="名著智慧传承人" placeholder="输入项目主题">
         </div>
         <button class="btn-regen" id="btnGenerate">
-          <span class="refresh-icon">⟳</span> 重新生成
+          <span class="refresh-icon">✦</span> 重新生成
         </button>
       </div>
       <div class="design-result" id="designResult">
@@ -196,8 +187,9 @@
       </div>
       <div class="impl-main" id="implContent">
         <div class="impl-empty">
-          <div class="empty-icon">📋</div>
-          <p>请先在「项目设计」中创建项目，或从「我的项目库」选择一个项目进入实施。</p>
+          <div class="empty-icon" style="color:var(--primary);font-size:48px;">📝</div>
+          <p style="font-size:15px;font-weight:500;color:var(--text);margin-bottom:6px;">选择一个项目开始实施</p>
+          <p style="font-size:12px;color:var(--text-secondary);">从左侧选择已生成的项目，查看或生成对应的学生任务单</p>
         </div>
       </div>
       <div class="impl-assistant">
@@ -245,7 +237,7 @@
       <div class="community-main">
         <div class="community-toolbar">
           <h3 class="community-title">教研社区</h3>
-          <button class="btn-new-post" id="btnNewPost">+ 发布新话题</button>
+          <button class="btn-new-post" id="btnNewPost">+ 发布</button>
         </div>
         <div class="post-list" id="postList"></div>
       </div>
@@ -289,6 +281,6 @@
   </div>
 </div>
 
-<script src="static/js/app.js?v=8"></script>
+<script src="static/js/app.js?v=9"></script>
 </body>
 </html>
