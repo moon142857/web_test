@@ -22,7 +22,10 @@ const MOCK_POSTS = [
 ];
 
 const MOCK_PROJECTS = [
-  { id: 1, title: '名著智慧传承人——困境解决锦囊创作行动', grade: '五年级', semester: '下学期', project_type: '学科项目', main_subject: '语文·统编版·五年级下册第二单元', sub_subjects: '美术、信息技术', topic: '名著智慧传承人', ai_content: '一、项目背景\n\n本项目面向五年级学生，以语文统编版五年级下册第二单元为主导学科，融合美术与信息技术，通过真实情境驱动学生开展深度探究。\n\n二、核心问题\n\n1. 驱动性问题：如何在真实情境中运用多学科知识解决实际问题？\n2. 子问题 1：需要哪些学科知识作为支撑？\n3. 子问题 2：如何设计方案并进行实践验证？\n4. 子问题 3：如何评价项目成果与过程表现？\n\n三、学习目标\n\n1. 掌握语文核心概念与技能\n2. 发展跨学科思维与问题解决能力\n3. 提升团队协作与表达能力\n\n四、实施建议\n\n建议分四个阶段推进：入境阶段（2课时）→ 探究阶段（6课时）→ 建构阶段（4课时）→ 展示阶段（2课时）。每阶段设置明确的任务单与评价量规。', created_at: '2026-04-29 08:00:00' }
+  { id: 1, title: '名著智慧传承人——困境解决锦囊创作行动', grade: '五年级', semester: '下学期', project_type: '学科项目', main_subject: '语文·统编版 五年级下册第二单元', sub_subjects: '美术、信息技术', topic: '名著智慧传承人', ai_content: '一、项目背景\n\n本项目面向五年级学生，以语文统编版五年级下册第二单元为主导学科，融合美术与信息技术，通过真实情境驱动学生开展深度探究。\n\n二、核心问题\n\n1. 驱动性问题：如何在真实情境中运用多学科知识解决实际问题？\n2. 子问题 1：需要哪些学科知识作为支撑？\n3. 子问题 2：如何设计方案并进行实践验证？\n4. 子问题 3：如何评价项目成果与过程表现？\n\n三、学习目标\n\n1. 掌握语文核心概念与技能\n2. 发展跨学科思维与问题解决能力\n3. 提升团队协作与表达能力\n\n四、实施建议\n\n建议分四个阶段推进：入境阶段（2课时）→ 探究阶段（6课时）→ 建构阶段（4课时）→ 展示阶段（2课时）。每阶段设置明确的任务单与评价量规。', created_at: '2026-04-29 08:00:00' },
+  { id: 2, title: '我是金牌推荐官——民间故事大会', grade: '五年级', semester: '上学期', project_type: '学科项目', main_subject: '语文·统编版 五年级上册第三单元民间故事', sub_subjects: '美术、信息技术', topic: '民间故事大会', ai_content: '一、项目背景\n\n本项目面向五年级学生，以语文统编版五年级上册第三单元民间故事为主导学科，融合美术与信息技术。\n\n二、核心问题\n\n驱动性问题：如何成为民间故事的金牌推荐官？\n\n三、学习目标\n\n1. 掌握民间故事的特点与讲述技巧\n2. 发展创意表达与审美能力\n3. 提升团队协作与公众表达能力\n\n四、实施建议\n\n建议分四个阶段推进：入境阶段（2课时）→ 探究阶段（6课时）→ 建构阶段（4课时）→ 展示阶段（2课时）。', created_at: '2026-04-28 08:00:00' },
+  { id: 3, title: '"我是国宝代言人——中国世界文化遗产"', grade: '五年级', semester: '上学期', project_type: '跨学科项目', main_subject: '语文·统编版 五年级上册第七单元', sub_subjects: '美术、信息技术、历史', topic: '国宝代言人', ai_content: '一、项目背景\n\n本项目面向五年级学生，以语文为主导学科，融合美术、信息技术和历史。\n\n二、核心问题\n\n驱动性问题：如何成为中国世界文化遗产的金牌代言人？\n\n三、学习目标\n\n1. 了解中国世界文化遗产的历史与文化价值\n2. 发展跨学科研究与表达能力\n3. 提升文化认同与传承意识\n\n四、实施建议\n\n分阶段推进项目设计与实施。', created_at: '2026-04-27 08:00:00' },
+  { id: 4, title: '"少年生存智慧营：名著启迪下的生存技能"', grade: '五年级', semester: '上学期', project_type: '跨学科项目', main_subject: '语文·统编版 五年级上册', sub_subjects: '科学、体育、劳动', topic: '生存智慧营', ai_content: '一、项目背景\n\n本项目面向五年级学生，从名著中汲取生存智慧。\n\n二、核心问题\n\n驱动性问题：名著人物如何在困境中生存？我们能学到什么？\n\n三、学习目标\n\n1. 掌握名著阅读与分析技能\n2. 发展实践操作与问题解决能力\n3. 提升团队协作与生存意识\n\n四、实施建议\n\n分四个阶段推进。', created_at: '2026-04-26 08:00:00' },
 ];
 
 /* ========== ROUTING ========== */
@@ -41,8 +44,8 @@ function navigate(page) {
   const target = document.getElementById('page-' + page);
   if (target) target.style.display = 'block';
   document.querySelectorAll('.nav-link').forEach(n => n.classList.toggle('active', n.dataset.page === page));
-  if (page === 'inspiration') loadInspiration();
-  if (page === 'design') { /* design page static */ }
+  if (page === 'dashboard') loadDashboardInspiration();
+  if (page === 'inspiration') loadInspirationStandalone();
   if (page === 'library') loadLibrary();
   if (page === 'community') loadCommunity();
   if (page === 'implement') loadImplementProjects();
@@ -60,17 +63,26 @@ async function api(path, opts = {}) {
   }
 }
 
-/* ========== INSPIRATION ====== */
-function loadInspiration() {
-  let data = currentGradeFilter
-    ? MOCK_TEMPLATES.filter(t => t.grade === currentGradeFilter)
-    : MOCK_TEMPLATES;
+/* ========== DASHBOARD INSPIRATION ====== */
+function loadDashboardInspiration() {
   const grid = document.getElementById('inspirationGrid');
   if (!grid) return;
-  grid.innerHTML = data.map(t => `
+  grid.innerHTML = renderInspirationCards(MOCK_TEMPLATES);
+}
+
+function loadInspirationStandalone() {
+  const grid = document.getElementById('inspirationGridStandalone');
+  if (!grid) return;
+  grid.innerHTML = renderInspirationCards(MOCK_TEMPLATES);
+}
+
+function renderInspirationCards(data) {
+  return data.map(t => `
     <div class="inspiration-card">
-      <div class="grade-label">${t.grade}</div>
-      <span class="category-tag ${t.categoryKey}">${t.category}</span>
+      <div class="card-header">
+        <span class="grade-label">${t.grade}</span>
+        <span class="category-tag ${t.categoryKey}">${t.category}</span>
+      </div>
       <h4>${t.title}</h4>
       <div class="card-desc">${t.description}</div>
       <div class="subject-tags">
@@ -96,26 +108,44 @@ document.getElementById('aiInput').addEventListener('keydown', e => { if (e.key 
 function generateProject() {
   const topic = document.getElementById('dTopic').value || '跨学科项目';
   const grade = document.getElementById('dGrade').value;
+  const semester = document.getElementById('dSemester').value;
+  const ptype = document.querySelector('input[name="ptype"]:checked')?.value || '学科项目';
   const main = document.getElementById('dMain').value;
+  const context = document.getElementById('dContext').value;
   const html = `
     <div class="result-content">
-      <h3>${topic} — 跨学科项目设计方案</h3>
-      <h4>一、项目背景</h4>
-      <p>本项目面向${grade}学生，以${main}为主导学科，融合多学科知识，通过真实情境驱动学生开展深度探究。</p>
-      <h4>二、核心问题</h4>
+      <div class="result-banner">
+        <div style="font-size:12px;opacity:0.8;margin-bottom:4px;">PBL 跨学科项目书</div>
+        <h2>##《${topic}》</h2>
+        <div class="banner-tags">
+          <span class="banner-tag">${grade}</span>
+          <span class="banner-tag">${semester}</span>
+          <span class="banner-tag">${ptype}</span>
+          <span class="banner-tag">${main.split('·')[0]}</span>
+        </div>
+      </div>
+      <h3>一、项目基本信息</h3>
+      <table class="result-table">
+        <tr><th>项目名称</th><td>《${topic}》</td><th>课时</th><td>8课时（课内）+ 课下探究 + 阅读节展示日半天</td></tr>
+        <tr><th>涉及学科</th><td>${main.split('·')[0]}</td><th>年级</th><td>${grade}</td></tr>
+        <tr><th>学校</th><td>翠微小学</td><th>参与教师</th><td></td></tr>
+      </table>
+      <h3>二、项目背景</h3>
+      <p>本项目面向${grade}学生，以${main}为主导学科，融合多学科知识，通过真实情境（${context || '学校举办阅读节'}）驱动学生开展深度探究。</p>
+      <h3>三、核心问题</h3>
       <ul>
         <li>驱动性问题：如何在真实情境中运用多学科知识解决实际问题？</li>
         <li>子问题 1：需要哪些学科知识作为支撑？</li>
         <li>子问题 2：如何设计方案并进行实践验证？</li>
         <li>子问题 3：如何评价项目成果与过程表现？</li>
       </ul>
-      <h4>三、学习目标</h4>
+      <h3>四、学习目标</h3>
       <ul>
-        <li>掌握${main}核心概念与技能</li>
+        <li>掌握${main.split('·')[0]}核心概念与技能</li>
         <li>发展跨学科思维与问题解决能力</li>
         <li>提升团队协作与表达能力</li>
       </ul>
-      <h4>四、实施建议</h4>
+      <h3>五、实施建议</h3>
       <p>建议分四个阶段推进：入境阶段（2课时）→ 探究阶段（6课时）→ 建构阶段（4课时）→ 展示阶段（2课时）。每阶段设置明确的任务单与评价量规。</p>
     </div>
   `;
@@ -175,6 +205,7 @@ function loadImplementProjects() {
     <div class="impl-task ${p.id === currentProjectId ? 'active' : ''}" onclick="openImplement(${p.id})">
       <div class="impl-task-title">${p.title}</div>
       <div class="impl-task-meta">${p.grade} · ${p.main_subject}</div>
+      <div class="impl-task-status">学生任务单 ✓</div>
     </div>
   `).join('');
   if (currentProjectId) openImplement(currentProjectId);
@@ -191,26 +222,40 @@ function openImplement(pid) {
 
   const content = document.getElementById('implContent');
   const stages = [
-    { stage_name: '入境阶段', order_index: 1, driving_question: '你了解项目背景吗？', content: '情境导入，发布项目任务，组建学习小组。\n\n1. 我们的约定：尽全力做好自己负责的工作。\n2. 我们的约定：按时提交我们的工作成果。\n3. 我们的约定：在需要时及时寻求帮助。\n4. 我们的约定：________________\n5. 我们的约定：________________\n\n如果团队中有人违反约定，要及时召开团队会议协商解决。\n\n团队成员签名：________________\n日期：________________' },
-    { stage_name: '探究阶段', order_index: 2, driving_question: '如何收集有效信息？', content: '资料搜集、实地调研、访谈记录。\n\n子问题1：（哪些名著人物和故事情节，蕴藏着解决实际问题的智慧？我们需要先读懂它们。）\n\n子问题2：（我们遇到的现实困境，都和名著里的哪些智慧相呼应？怎么把古人的智慧翻译成今天的方法？）\n\n子问题3：（怎样设计我们的《指南》，才能让它既清楚又有用，真正帮到其他同学？）' },
-    { stage_name: '建构阶段', order_index: 3, driving_question: '怎样形成解决方案？', content: '分析数据、设计方案、制作模型/作品。' },
-    { stage_name: '展示阶段', order_index: 4, driving_question: '如何展示学习成果？', content: '成果汇报、评价反思、修订完善。' }
+    { stage_name: '入境', order_index: 1, driving_question: '（制作名著智慧应用指南）', content: '1. 我们的约定：尽全力做好自己负责的工作。\n2. 我们的约定：按时提交我们的工作成果。\n3. 我们的约定：在需要时及时寻求帮助。\n4. 我们的约定：________________\n5. 我们的约定：________________\n\n如果团队中有人违反约定，要及时召开团队会议协商解决。\n\n团队成员签名：________________\n日期：________________' },
+    { stage_name: '探究', order_index: 2, driving_question: '', subQuestions: [
+      { label: '子问题1', text: '（哪些名著人物和故事情节，蕴藏着解决实际问题的智慧？我们需要先读懂它们。）' },
+      { label: '子问题2', text: '（我们遇到的现实困境，都和名著里的哪些智慧相呼应？怎么把古老的智慧"翻译"成今天的办法？）' },
+      { label: '子问题3', text: '（怎样设计我们的《指南》，才能让它既清楚又有用，真正帮到其他同学？）' }
+    ]},
+    { stage_name: '建构', order_index: 3, driving_question: '', content: '成果展示' },
+    { stage_name: '展示', order_index: 4, driving_question: '', content: '成果汇报、评价反思、修订完善。' }
   ];
   content.innerHTML = `
-    <h3 style="margin-bottom:4px">${p.title}</h3>
-    <div style="font-size:12px;color:#94a3b8;margin-bottom:16px">${p.grade} · ${p.main_subject} · ${p.project_type}</div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <h3 style="margin:0;font-size:15px;font-weight:600;">##《${p.title}》...</h3>
+      <div style="display:flex;gap:8px;">
+        <button class="btn-secondary btn-sm" onclick="alert('Word 导出开发中')">下载 Word</button>
+        <button class="btn-secondary btn-sm" onclick="navigate('design')">重新生成</button>
+        <button class="btn-text" onclick="alert('编辑开发中')">✎ 编辑</button>
+      </div>
+    </div>
+    <h3 style="font-size:14px;font-weight:600;margin-bottom:12px;">项目时间轴</h3>
     <div class="timeline">
       ${stages.map((s, i) => `
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-title">${s.stage_name}</div>
-          <div class="timeline-sub">驱动性问题：${s.driving_question || '暂无'}</div>
-          <div class="timeline-body">${s.content.replace(/\n/g, '<br>') || '请补充阶段任务内容...'}</div>
+          ${s.driving_question ? `<div class="timeline-sub">驱动性问题：${s.driving_question}</div>` : ''}
+          <div class="timeline-body">${s.content ? s.content.replace(/\n/g, '<br>') : ''}</div>
+          ${s.subQuestions ? s.subQuestions.map(sq => `
+            <div class="sub-question">
+              <div class="sub-question-label">${sq.label}</div>
+              <div>${sq.text}</div>
+            </div>
+          `).join('') : ''}
         </div>
       `).join('')}
-    </div>
-    <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
-      <button class="btn-primary" onclick="alert('导出功能开发中')">下载 Word</button>
     </div>
   `;
 }
@@ -234,7 +279,9 @@ function loadLibrary() {
   list.innerHTML = data.map(p => `
     <div class="lib-item" onclick="showProjectDetail(${p.id})" id="lib-item-${p.id}">
       <div class="lib-item-title">${p.title}</div>
-      <div class="lib-item-meta">${p.grade} · ${p.semester} · ${p.main_subject}</div>
+      <div class="lib-item-meta">${p.grade} · ${p.semester} · ${p.project_type}</div>
+      <div class="lib-item-meta">主导：${p.main_subject}</div>
+      <div class="lib-item-meta">${p.created_at ? p.created_at.split('T')[0] : ''}</div>
       <span class="item-delete" onclick="event.stopPropagation();deleteProject(${p.id})">删除</span>
     </div>
   `).join('');
@@ -247,15 +294,17 @@ function showProjectDetail(pid) {
   const p = MOCK_PROJECTS.find(x => x.id === pid) || projectsCache.find(x => x.id === pid);
   if (!p) return;
   document.getElementById('libDetail').innerHTML = `
-    <h3>${p.title}</h3>
-    <div class="meta">${p.grade} · ${p.semester} · ${p.project_type} · ${p.main_subject}</div>
-    <div class="lib-detail-actions">
-      <button class="btn-primary btn-sm" onclick="alert('Word 导出功能开发中')">下载 Word</button>
-      <button class="btn-secondary btn-sm" onclick="navigate('design')">重新生成</button>
-      <button class="btn-secondary btn-sm" onclick="enterImplement(${p.id})">进入实施</button>
-      <button class="btn-secondary btn-sm" style="color:#dc2626;border-color:#fecaca" onclick="deleteProject(${p.id})">删除</button>
+    <div class="lib-detail">
+      <h3>${p.title}</h3>
+      <div class="meta">${p.grade} · ${p.semester} · ${p.project_type} · ${p.main_subject}</div>
+      <div class="lib-detail-actions">
+        <button class="btn-primary btn-sm" onclick="alert('Word 导出功能开发中')">下载 Word</button>
+        <button class="btn-secondary btn-sm" onclick="navigate('design')">重新生成</button>
+        <button class="btn-secondary btn-sm" onclick="enterImplement(${p.id})">进入实施</button>
+        <button class="btn-secondary btn-sm" style="color:#dc2626;border-color:#fecaca" onclick="deleteProject(${p.id})">删除</button>
+      </div>
+      <div class="lib-content">${p.ai_content || '暂无 AI 生成内容'}</div>
     </div>
-    <div class="lib-content">${p.ai_content || '暂无 AI 生成内容'}</div>
   `;
 }
 

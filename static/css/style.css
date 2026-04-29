@@ -58,21 +58,35 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Ping
 .why-subtitle { text-align: center; font-size: 14px; color: var(--text-secondary); margin-bottom: 32px; }
 .why-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .why-card { background: var(--card); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-md); border: 1px solid var(--border); text-align: center; }
-.why-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin: 0 auto 16px; color: #fff; }
-.why-icon.blue { background: linear-gradient(135deg, #3b82f6, #6366f1); }
-.why-icon.orange { background: linear-gradient(135deg, #f59e0b, #f97316); }
-.why-icon.green { background: linear-gradient(135deg, #10b981, #059669); }
-.why-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 10px; }
-.why-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+.why-card:hover { border-color: var(--primary); }
+.why-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin: 0 auto 16px; }
+.why-icon.blue { background: #dbeafe; }
+.why-icon.orange { background: #fef3c7; }
+.why-icon.green { background: #d1fae5; }
+.why-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 10px; }
+.why-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+/* ===== Steps Section ===== */
+.steps-section { padding: 40px 0 60px; background: #f1f5f9; margin: 0 -24px; padding-left: 24px; padding-right: 24px; }
+.steps-title { text-align: center; font-size: 22px; font-weight: 600; margin-bottom: 6px; }
+.steps-subtitle { text-align: center; font-size: 14px; color: var(--text-secondary); margin-bottom: 32px; }
+.steps-cards { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.step-card { background: var(--card); border-radius: var(--radius-lg); padding: 24px 32px; box-shadow: var(--shadow-md); border: 1px solid var(--border); text-align: center; min-width: 140px; }
+.step-icon { font-size: 28px; margin-bottom: 10px; }
+.step-name { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.step-desc { font-size: 12px; color: var(--text-secondary); }
+.step-arrow { font-size: 24px; color: var(--text-secondary); font-weight: 300; }
 
 /* ===== Section Title ===== */
 .section-title { text-align: center; font-size: 24px; font-weight: 600; padding: 32px 0 24px; }
 
 /* ===== Inspiration Wall ===== */
+.inspiration-section { padding: 20px 0 40px; }
 .inspiration-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding-bottom: 20px; }
 .inspiration-card { background: var(--card); border-radius: var(--radius-lg); padding: 20px; box-shadow: var(--shadow-md); border: 1px solid var(--border); }
-.inspiration-card .grade-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; }
-.inspiration-card .category-tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 4px; margin-bottom: 10px; font-weight: 500; }
+.inspiration-card .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.inspiration-card .grade-label { font-size: 12px; color: var(--text-secondary); }
+.inspiration-card .category-tag { font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 500; }
 .inspiration-card .category-tag.life { background: #fef3c7; color: #b45309; }
 .inspiration-card .category-tag.nature { background: #d1fae5; color: #047857; }
 .inspiration-card .category-tag.eco { background: #cffafe; color: #0e7490; }
@@ -80,7 +94,7 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Ping
 .inspiration-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
 .inspiration-card .card-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 10px; }
 .inspiration-card .subject-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 14px; }
-.inspiration-card .subject-tag { font-size: 11px; color: var(--text-secondary); background: var(--bg); padding: 2px 8px; border-radius: 4px; }
+.inspiration-card .subject-tag { font-size: 11px; color: #047857; }
 .inspiration-card .btn-start { width: 100%; background: var(--primary); color: #fff; border: none; padding: 10px; border-radius: var(--radius); font-size: 14px; font-weight: 500; cursor: pointer; transition: .15s; }
 .inspiration-card .btn-start:hover { background: var(--primary-dark); }
 .inspiration-footer { text-align: center; padding: 20px 0 40px; }
@@ -103,7 +117,7 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Ping
 .form-group { margin-bottom: 14px; }
 .form-group label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 5px; }
 .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 13px; font-family: inherit; background: #fff; }
-.form-group input:focus, .form-group select:focus { outline: none; border-color: var(--primary); }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); }
 .radio-group { display: flex; gap: 16px; }
 .radio-label { display: flex; align-items: center; gap: 6px; font-size: 13px; cursor: pointer; }
 .radio-label input { width: auto; }
@@ -118,16 +132,27 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Ping
 .result-content h4 { font-size: 14px; font-weight: 600; margin: 16px 0 8px; color: var(--primary-dark); }
 .result-content p, .result-content ul { font-size: 13px; line-height: 1.8; color: #475569; }
 .result-content ul { padding-left: 18px; }
+.result-banner { background: linear-gradient(135deg, #0d9488, #14b8a6); color: #fff; padding: 20px 24px; border-radius: var(--radius-lg); margin-bottom: 20px; }
+.result-banner h2 { font-size: 18px; margin-bottom: 10px; }
+.result-banner .banner-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.result-banner .banner-tag { background: rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 4px; font-size: 12px; }
+.result-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+.result-table th, .result-table td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; }
+.result-table th { background: var(--bg); font-weight: 600; }
 
 .ai-panel { width: 260px; background: var(--card); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--border); flex-shrink: 0; display: flex; flex-direction: column; overflow: hidden; }
 .ai-header { padding: 16px; border-bottom: 1px solid var(--border); text-align: center; }
 .ai-icon { font-size: 28px; margin-bottom: 6px; }
+.ai-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), #06b6d4); margin: 0 auto 6px; }
 .ai-title { font-size: 14px; font-weight: 600; }
 .ai-subtitle { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
 .ai-chat { flex: 1; overflow-y: auto; padding: 14px; }
 .ai-welcome { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
 .ai-welcome p { margin-bottom: 8px; }
 .ai-example { color: var(--primary); font-style: italic; }
+.ai-msg { padding: 10px 12px; border-radius: 8px; font-size: 12px; line-height: 1.5; margin-bottom: 8px; }
+.ai-msg.ai-user { background: var(--primary); color: #fff; align-self: flex-end; }
+.ai-msg.ai-reply { background: #f3f4f6; color: var(--text); }
 .ai-input-bar { display: flex; padding: 10px; border-top: 1px solid var(--border); gap: 6px; }
 .ai-input-bar input { flex: 1; padding: 7px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; }
 .ai-input-bar button { width: 30px; border: none; background: var(--primary); color: #fff; border-radius: 6px; cursor: pointer; font-size: 12px; }
@@ -137,11 +162,12 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Ping
 .impl-sidebar { width: 260px; flex-shrink: 0; }
 .impl-sidebar-title { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
 .impl-project-list { background: var(--card); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--border); overflow: hidden; }
-.impl-task { padding: 12px 14px; border-bottom: 1px solid var(--border); cursor: pointer; font-size: 13px; transition: .15s; }
+.impl-task { padding: 12px 14px; border-bottom: 1px solid var(--border); cursor: pointer; transition: .15s; }
 .impl-task:hover { background: var(--bg); }
 .impl-task.active { background: var(--primary-bg); color: var(--primary); font-weight: 500; border-left: 3px solid var(--primary); }
-.impl-task-title { font-weight: 500; margin-bottom: 2px; }
+.impl-task-title { font-weight: 500; margin-bottom: 2px; font-size: 13px; }
 .impl-task-meta { font-size: 11px; color: var(--text-secondary); }
+.impl-task-status { font-size: 11px; color: var(--primary); margin-top: 2px; }
 
 .impl-main { flex: 1; background: var(--card); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-md); border: 1px solid var(--border); overflow-y: auto; }
 .impl-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: var(--text-secondary); text-align: center; padding: 40px; }
@@ -154,21 +180,26 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Ping
 .timeline-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
 .timeline-sub { font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; }
 .timeline-body { font-size: 14px; color: var(--text); line-height: 1.7; }
+.sub-question { background: var(--bg); padding: 10px 14px; border-radius: var(--radius); margin: 8px 0; font-size: 13px; }
+.sub-question-label { color: var(--text-secondary); font-size: 12px; margin-bottom: 4px; }
 
 .impl-assistant { width: 260px; flex-shrink: 0; }
 
 /* ===== Library ===== */
 .library-layout { display: flex; gap: 20px; padding: 20px 0; min-height: calc(100vh - 240px); }
-.lib-sidebar { width: 300px; flex-shrink: 0; }
-.lib-sidebar-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; display: inline-block; }
-.btn-refresh-sm { float: right; background: none; border: none; color: var(--text-secondary); font-size: 12px; cursor: pointer; }
-.lib-list { background: var(--card); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--border); overflow: hidden; margin-top: 12px; }
+.lib-sidebar { width: 340px; flex-shrink: 0; }
+.lib-sidebar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.lib-sidebar-title { font-size: 14px; font-weight: 600; }
+.btn-refresh-sm { background: none; border: none; color: var(--text-secondary); font-size: 12px; cursor: pointer; }
+.lib-list { background: var(--card); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--border); overflow: hidden; }
 .lib-item { padding: 14px 16px; border-bottom: 1px solid var(--border); cursor: pointer; transition: .15s; }
 .lib-item:hover { background: var(--bg); }
 .lib-item.active { background: var(--primary-bg); border-left: 3px solid var(--primary); }
 .lib-item-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; line-height: 1.4; }
-.lib-item-meta { font-size: 11px; color: var(--text-secondary); }
-.lib-item .item-delete { float: right; font-size: 11px; color: #ef4444; cursor: pointer; }
+.lib-item-title::before { content: '## '; color: var(--text-secondary); }
+.lib-item-meta { font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; }
+.lib-item .item-delete { float: right; font-size: 11px; color: #94a3b8; cursor: pointer; padding: 2px 6px; border-radius: 4px; }
+.lib-item .item-delete:hover { color: #ef4444; background: #fef2f2; }
 
 .lib-main { flex: 1; background: var(--card); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-md); border: 1px solid var(--border); overflow-y: auto; }
 .lib-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: var(--text-secondary); text-align: center; }
@@ -241,4 +272,6 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Ping
   .nav-links { display: none; }
   .inspiration-grid { grid-template-columns: 1fr; }
   .hero-title { font-size: 28px; }
+  .steps-cards { flex-direction: column; }
+  .step-arrow { transform: rotate(90deg); }
 }

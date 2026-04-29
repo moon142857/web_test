@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>跨学科 AI Studio</title>
-<link rel="stylesheet" href="static/css/style.css?v=7">
+<link rel="stylesheet" href="static/css/style.css?v=8">
 </head>
 <body>
 
@@ -17,6 +17,7 @@
     </div>
     <div class="nav-links">
       <a href="#" class="nav-link active" data-page="dashboard">首页</a>
+      <a href="#" class="nav-link" data-page="inspiration">项目灵感墙</a>
       <a href="#" class="nav-link" data-page="design">项目设计</a>
       <a href="#" class="nav-link" data-page="implement">项目实施</a>
       <a href="#" class="nav-link" data-page="library">我的项目库</a>
@@ -53,30 +54,66 @@
       <p class="why-subtitle">专业、智能、简单，让教师聚焦教学本身</p>
       <div class="why-cards">
         <div class="why-card">
-          <div class="why-icon blue">★</div>
+          <div class="why-icon blue">📚</div>
           <h3>专业理论支撑</h3>
-          <p>基于跨学科学习理论，专业 PBL 项目设计框架，确保项目设计科学规范</p>
+          <p>基于跨学科学习理论<br>专业 PBL 项目设计框架</p>
         </div>
         <div class="why-card">
-          <div class="why-icon orange">⚡</div>
+          <div class="why-icon orange">🤖</div>
           <h3>AI 智能生成</h3>
-          <p>DeepSeek 大模型驱动，一键生成完整项目方案，从灵感构思到实施落地</p>
+          <p>DeepSeek 大模型驱动</p>
         </div>
         <div class="why-card">
-          <div class="why-icon green">🌎</div>
+          <div class="why-icon green">🌐</div>
           <h3>覆盖全学科</h3>
-          <p>小学 1-6 年级全覆盖，语文、数学、科学、艺术等多学科深度融合</p>
+          <p>小学 1-6 年级全覆盖</p>
         </div>
+      </div>
+    </div>
+    <div class="steps-section">
+      <h2 class="steps-title">四步完成一个专业项目</h2>
+      <p class="steps-subtitle">从灵感到成果，全程 AI 辅助</p>
+      <div class="steps-cards">
+        <div class="step-card">
+          <div class="step-icon">🔍</div>
+          <div class="step-name">获取灵感</div>
+          <div class="step-desc">激发创意</div>
+        </div>
+        <div class="step-arrow">›</div>
+        <div class="step-card">
+          <div class="step-icon">✏️</div>
+          <div class="step-name">填写信息</div>
+          <div class="step-desc">2分钟搞定</div>
+        </div>
+        <div class="step-arrow">›</div>
+        <div class="step-card">
+          <div class="step-icon">⚡</div>
+          <div class="step-name">AI 生成</div>
+          <div class="step-desc">专业项目书</div>
+        </div>
+        <div class="step-arrow">›</div>
+        <div class="step-card">
+          <div class="step-icon">📋</div>
+          <div class="step-name">实施记录</div>
+          <div class="step-desc">完整项目档案</div>
+        </div>
+      </div>
+    </div>
+    <div class="inspiration-section" id="dashInspiration">
+      <h2 class="section-title">项目灵感墙</h2>
+      <div class="inspiration-grid" id="inspirationGrid"></div>
+      <div class="inspiration-footer">
+        <button class="btn-refresh" onclick="loadInspiration()">⟳ 换一批灵感</button>
       </div>
     </div>
   </section>
 
-  <!-- ====== INSPIRATION (part of design page in video) ====== -->
+  <!-- ====== INSPIRATION (standalone) ====== -->
   <section class="page" id="page-inspiration" style="display:none">
     <h2 class="section-title">项目灵感墙</h2>
-    <div class="inspiration-grid" id="inspirationGrid"></div>
+    <div class="inspiration-grid" id="inspirationGridStandalone"></div>
     <div class="inspiration-footer">
-      <button class="btn-refresh" onclick="loadInspiration()">⟳ 换一批灵感</button>
+      <button class="btn-refresh" onclick="loadInspirationStandalone()">⟳ 换一批灵感</button>
     </div>
   </section>
 
@@ -110,11 +147,11 @@
         </div>
         <div class="form-group">
           <label>主导学科信息</label>
-          <select id="dMain"><option>语文·统编版·五年级下册第二单元</option><option>数学·人教版</option><option>科学·教科版</option></select>
+          <textarea id="dMain" rows="2">语文·统编版 五年级下册第二单元</textarea>
         </div>
         <div class="form-group">
           <label>真实情境或契机</label>
-          <input type="text" id="dContext" placeholder="如：学校举办阅读节">
+          <input type="text" id="dContext" placeholder="学校举办阅读节" value="学校举办阅读节">
         </div>
         <div class="form-group">
           <label>项目主题</label>
@@ -134,11 +171,11 @@
         <div class="ai-header">
           <div class="ai-icon">🤖</div>
           <div class="ai-title">AI 小助手</div>
-          <div class="ai-subtitle">点击即可生成项目要点</div>
+          <div class="ai-subtitle">告诉我哪里需要修改</div>
         </div>
         <div class="ai-chat" id="aiChat">
           <div class="ai-welcome">
-            <p>项目书生成后，你可以在右侧输入框提出具体的项目书修改内容，我会给出具体修改建议。</p>
+            <p>项目书生成后，你可以在这里向AI提出需要修改的内容，我会给出具体建议或修改。</p>
             <p class="ai-example">例如：第二阶段的探究活动不够具体，帮我补充一下。</p>
           </div>
         </div>
@@ -165,9 +202,9 @@
       </div>
       <div class="impl-assistant">
         <div class="ai-header">
-          <div class="ai-icon">🤖</div>
+          <div class="ai-avatar"></div>
           <div class="ai-title">实施小助手</div>
-          <div class="ai-subtitle">全面实施支持</div>
+          <div class="ai-subtitle">AI 小助手</div>
         </div>
         <div class="ai-chat" id="implAiChat">
           <div class="ai-welcome">
@@ -186,8 +223,10 @@
   <section class="page" id="page-library" style="display:none">
     <div class="library-layout">
       <div class="lib-sidebar">
-        <h4 class="lib-sidebar-title">项目库</h4>
-        <button class="btn-refresh-sm" onclick="loadLibrary()">⟳ 刷新</button>
+        <div class="lib-sidebar-header">
+          <h4 class="lib-sidebar-title">项目库</h4>
+          <button class="btn-refresh-sm" onclick="loadLibrary()">⟳ 刷新</button>
+        </div>
         <div class="lib-list" id="libList"></div>
       </div>
       <div class="lib-main" id="libDetail">
@@ -250,6 +289,6 @@
   </div>
 </div>
 
-<script src="static/js/app.js?v=7"></script>
+<script src="static/js/app.js?v=8"></script>
 </body>
 </html>
