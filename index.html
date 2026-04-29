@@ -4,234 +4,252 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>跨学科 AI Studio</title>
-<link rel="stylesheet" href="static/css/style.css?v=2">
+<link rel="stylesheet" href="static/css/style.css?v=7">
 </head>
 <body>
-<div class="app">
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <div class="sidebar-logo">
-      <div class="logo-icon">AI</div>
-      <div class="logo-text">
-        <div class="logo-title">跨学科 AI Studio</div>
-        <div class="logo-sub">AI 赋能跨学科项目设计</div>
+
+<!-- Top Navigation -->
+<nav class="top-nav">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="logo-mark"></div>
+      <span class="logo-text">跨学科 AI Studio</span>
+    </div>
+    <div class="nav-links">
+      <a href="#" class="nav-link active" data-page="dashboard">首页</a>
+      <a href="#" class="nav-link" data-page="design">项目设计</a>
+      <a href="#" class="nav-link" data-page="implement">项目实施</a>
+      <a href="#" class="nav-link" data-page="library">我的项目库</a>
+      <a href="#" class="nav-link" data-page="community">教研社区</a>
+    </div>
+    <div class="nav-user">
+      <div class="user-badge">翠微小学</div>
+      <div class="user-avatar-sm"></div>
+    </div>
+  </div>
+</nav>
+
+<!-- Welcome Banner -->
+<div class="welcome-banner">
+  <span class="banner-star">✦</span>
+  <span>欢迎来到跨学科AI Studio！平台功能持续更新中，欢迎体验并反馈意见~</span>
+</div>
+
+<!-- Main Content -->
+<main class="main-content" id="mainContent">
+
+  <!-- ====== DASHBOARD ====== -->
+  <section class="page" id="page-dashboard">
+    <div class="hero-section">
+      <div class="hero-badge">专为中小学教师打造的 AI 工具</div>
+      <h1 class="hero-title">AI 赋能<span class="highlight">跨学科</span>项目设计</h1>
+      <p class="hero-subtitle">让每一位教师都能设计专业的 PBL 项目</p>
+      <button class="hero-btn" onclick="navigate('design')">
+        免费体验一次 <span class="arrow">→</span>
+      </button>
+    </div>
+    <div class="why-section">
+      <h2 class="why-title">为什么选择跨学科 AI Studio?</h2>
+      <p class="why-subtitle">专业、智能、简单，让教师聚焦教学本身</p>
+      <div class="why-cards">
+        <div class="why-card">
+          <div class="why-icon blue">★</div>
+          <h3>专业理论支撑</h3>
+          <p>基于跨学科学习理论，专业 PBL 项目设计框架，确保项目设计科学规范</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon orange">⚡</div>
+          <h3>AI 智能生成</h3>
+          <p>DeepSeek 大模型驱动，一键生成完整项目方案，从灵感构思到实施落地</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon green">🌎</div>
+          <h3>覆盖全学科</h3>
+          <p>小学 1-6 年级全覆盖，语文、数学、科学、艺术等多学科深度融合</p>
+        </div>
       </div>
     </div>
-    <nav class="sidebar-nav">
-      <a href="#" class="nav-item active" data-page="dashboard">
-        <span class="nav-icon">&#8962;</span><span>首页</span>
-      </a>
-      <a href="#" class="nav-item" data-page="inspiration">
-        <span class="nav-icon">&#9733;</span><span>项目灵感墙</span>
-      </a>
-      <a href="#" class="nav-item" data-page="design">
-        <span class="nav-icon">&#9998;</span><span>项目设计</span>
-      </a>
-      <a href="#" class="nav-item" data-page="implement">
-        <span class="nav-icon">&#9851;</span><span>项目实施</span>
-      </a>
-      <a href="#" class="nav-item" data-page="library">
-        <span class="nav-icon">&#128193;</span><span>我的项目库</span>
-      </a>
-      <a href="#" class="nav-item" data-page="community">
-        <span class="nav-icon">&#128172;</span><span>教研社区</span>
-      </a>
-    </nav>
-    <div class="sidebar-user">
-      <div class="user-avatar"></div>
-      <div class="user-info">
-        <div class="user-name" id="userName">刘翠微</div>
-        <div class="user-school" id="userSchool">翠微小学</div>
+  </section>
+
+  <!-- ====== INSPIRATION (part of design page in video) ====== -->
+  <section class="page" id="page-inspiration" style="display:none">
+    <h2 class="section-title">项目灵感墙</h2>
+    <div class="inspiration-grid" id="inspirationGrid"></div>
+    <div class="inspiration-footer">
+      <button class="btn-refresh" onclick="loadInspiration()">⟳ 换一批灵感</button>
+    </div>
+  </section>
+
+  <!-- ====== DESIGN ====== -->
+  <section class="page" id="page-design" style="display:none">
+    <div class="design-topbar">
+      <span class="status-tag">● 生成完成</span>
+      <div class="design-actions">
+        <button class="btn-text">✎ 编辑</button>
+        <button class="btn-save" onclick="saveDesign()">💾 保存到项目库</button>
       </div>
     </div>
-  </aside>
-
-  <!-- Main -->
-  <div class="main">
-    <header class="topbar">
-      <div class="breadcrumb" id="breadcrumb">首页</div>
-      <div class="topbar-right">
-        <span class="school-tag" id="topSchool">翠微小学</span>
-        <div class="top-avatar"></div>
+    <div class="design-layout">
+      <div class="design-form">
+        <h3 class="form-title">填写项目信息</h3>
+        <p class="form-desc">请填写左侧信息，生成项目设计内容</p>
+        <div class="form-group">
+          <label>年级</label>
+          <select id="dGrade"><option>一年级</option><option>二年级</option><option>三年级</option><option>四年级</option><option selected>五年级</option><option>六年级</option></select>
+        </div>
+        <div class="form-group">
+          <label>学期</label>
+          <select id="dSemester"><option>上学期</option><option selected>下学期</option></select>
+        </div>
+        <div class="form-group">
+          <label>项目类型</label>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="ptype" value="学科项目" checked> 学科项目</label>
+            <label class="radio-label"><input type="radio" name="ptype" value="跨学科项目"> 跨学科项目</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>主导学科信息</label>
+          <select id="dMain"><option>语文·统编版·五年级下册第二单元</option><option>数学·人教版</option><option>科学·教科版</option></select>
+        </div>
+        <div class="form-group">
+          <label>真实情境或契机</label>
+          <input type="text" id="dContext" placeholder="如：学校举办阅读节">
+        </div>
+        <div class="form-group">
+          <label>项目主题</label>
+          <input type="text" id="dTopic" value="名著智慧传承人" placeholder="输入项目主题">
+        </div>
+        <button class="btn-regen" id="btnGenerate">
+          <span class="refresh-icon">⟳</span> 重新生成
+        </button>
       </div>
-    </header>
+      <div class="design-result" id="designResult">
+        <div class="result-placeholder">
+          <div class="placeholder-icon">📄</div>
+          <p>点击左侧"生成项目方案"按钮<br>自动生成完整项目设计</p>
+        </div>
+      </div>
+      <div class="ai-panel">
+        <div class="ai-header">
+          <div class="ai-icon">🤖</div>
+          <div class="ai-title">AI 小助手</div>
+          <div class="ai-subtitle">点击即可生成项目要点</div>
+        </div>
+        <div class="ai-chat" id="aiChat">
+          <div class="ai-welcome">
+            <p>项目书生成后，你可以在右侧输入框提出具体的项目书修改内容，我会给出具体修改建议。</p>
+            <p class="ai-example">例如：第二阶段的探究活动不够具体，帮我补充一下。</p>
+          </div>
+        </div>
+        <div class="ai-input-bar">
+          <input type="text" id="aiInput" placeholder="遇到实际问题？随时来问">
+          <button id="aiSend">➤</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <div class="content" id="content">
-      <!-- ====== DASHBOARD ====== -->
-      <section class="page" id="page-dashboard">
-        <div class="hero">
-          <h1>跨学科 AI Studio</h1>
-          <p class="hero-desc">AI 赋能跨学科项目设计，让每位教师都能设计专业的 PBL 项目</p>
+  <!-- ====== IMPLEMENT ====== -->
+  <section class="page" id="page-implement" style="display:none">
+    <div class="implement-layout">
+      <div class="impl-sidebar">
+        <h4 class="impl-sidebar-title">我的项目</h4>
+        <div class="impl-project-list" id="implNav"></div>
+      </div>
+      <div class="impl-main" id="implContent">
+        <div class="impl-empty">
+          <div class="empty-icon">📋</div>
+          <p>请先在「项目设计」中创建项目，或从「我的项目库」选择一个项目进入实施。</p>
         </div>
-        <div class="features">
-          <div class="feature-card">
-            <div class="feature-icon blue">&#9733;</div>
-            <h3>专业理论支撑</h3>
-            <p>基于跨学科学习理论，专业 PBL 项目设计框架，确保项目设计科学规范</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon orange">&#9889;</div>
-            <h3>AI 智能生成</h3>
-            <p>DeepSeek 大模型驱动，一键生成完整项目方案，从灵感构思到实施落地</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon green">&#127758;</div>
-            <h3>覆盖全学科</h3>
-            <p>小学 1-6 年级全覆盖，语文、数学、科学、艺术等多学科深度融合</p>
+      </div>
+      <div class="impl-assistant">
+        <div class="ai-header">
+          <div class="ai-icon">🤖</div>
+          <div class="ai-title">实施小助手</div>
+          <div class="ai-subtitle">全面实施支持</div>
+        </div>
+        <div class="ai-chat" id="implAiChat">
+          <div class="ai-welcome">
+            <p>遇到实施问题？随时来问</p>
           </div>
         </div>
-      </section>
+        <div class="ai-input-bar">
+          <input type="text" id="implAiInput" placeholder="输入问题...">
+          <button id="implAiSend">➤</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <!-- ====== INSPIRATION ====== -->
-      <section class="page" id="page-inspiration" style="display:none">
-        <div class="page-header">
-          <h2>项目灵感墙</h2>
-          <p>浏览优秀跨学科项目案例，激发设计灵感</p>
+  <!-- ====== LIBRARY ====== -->
+  <section class="page" id="page-library" style="display:none">
+    <div class="library-layout">
+      <div class="lib-sidebar">
+        <h4 class="lib-sidebar-title">项目库</h4>
+        <button class="btn-refresh-sm" onclick="loadLibrary()">⟳ 刷新</button>
+        <div class="lib-list" id="libList"></div>
+      </div>
+      <div class="lib-main" id="libDetail">
+        <div class="lib-empty">
+          <div class="empty-icon">📄</div>
+          <p>点击左侧项目查看全文</p>
+          <p class="empty-sub">选择一个项目，完整内容将显示在这里</p>
         </div>
-        <div class="grade-tabs" id="gradeTabs">
-          <button class="tab active" data-grade="">全部</button>
-          <button class="tab" data-grade="一年级">一年级</button>
-          <button class="tab" data-grade="二年级">二年级</button>
-          <button class="tab" data-grade="三年级">三年级</button>
-          <button class="tab" data-grade="四年级">四年级</button>
-          <button class="tab" data-grade="五年级">五年级</button>
-          <button class="tab" data-grade="六年级">六年级</button>
-        </div>
-        <div class="card-grid" id="inspirationGrid"></div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <!-- ====== DESIGN ====== -->
-      <section class="page" id="page-design" style="display:none">
-        <div class="page-header">
-          <h2>项目设计</h2>
-          <p>填写项目信息，AI 自动生成完整跨学科项目方案</p>
-        </div>
-        <div class="design-layout">
-          <div class="design-form">
-            <div class="form-section">
-              <h3>基本信息</h3>
-              <div class="form-row">
-                <label>年级</label>
-                <select id="dGrade">
-                  <option>一年级</option><option>二年级</option><option>三年级</option>
-                  <option>四年级</option><option selected>五年级</option><option>六年级</option>
-                </select>
-              </div>
-              <div class="form-row">
-                <label>学期</label>
-                <select id="dSemester"><option>上学期</option><option selected>下学期</option></select>
-              </div>
-              <div class="form-row">
-                <label>项目类型</label>
-                <select id="dType"><option>学科项目</option><option selected>跨学科项目</option></select>
-              </div>
-              <div class="form-row">
-                <label>主导学科</label>
-                <select id="dMain">
-                  <option>语文 统编版</option><option>数学 人教版</option><option>科学 教科版</option>
-                  <option>英语 人教版</option>
-                </select>
-              </div>
-              <div class="form-row">
-                <label>副学科</label>
-                <input type="text" id="dSub" placeholder="如：美术、音乐、信息技术" value="美术、信息技术">
-              </div>
-              <div class="form-row">
-                <label>项目主题</label>
-                <input type="text" id="dTopic" placeholder="输入项目主题" value="名著智慧传承人">
-              </div>
-            </div>
-            <div class="form-section">
-              <h3>教材内容分析</h3>
-              <textarea id="dAnalysis" rows="4" placeholder="描述教材内容与学习目标..."></textarea>
-            </div>
-            <div class="form-actions">
-              <button class="btn btn-primary" id="btnGenerate">AI 生成项目方案</button>
-              <button class="btn btn-secondary" id="btnSaveDesign">保存到项目库</button>
-            </div>
-          </div>
-          <div class="design-result" id="designResult">
-            <div class="result-empty">
-              <div class="result-icon">&#128161;</div>
-              <p>点击左侧"AI 生成项目方案"按钮<br>自动生成完整项目设计</p>
-            </div>
-          </div>
-          <div class="ai-assistant">
-            <div class="ai-header">
-              <div class="ai-dot"></div>
-              <span>AI 小助手</span>
-            </div>
-            <div class="ai-chat" id="aiChat">
-              <div class="ai-msg ai-reply">你好！我是项目设计助手，可以帮你完善项目方案。</div>
-            </div>
-            <div class="ai-input">
-              <input type="text" id="aiInput" placeholder="输入问题...">
-              <button id="aiSend">&#10148;</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ====== IMPLEMENT ====== -->
-      <section class="page" id="page-implement" style="display:none">
-        <div class="page-header">
-          <h2>项目实施</h2>
-          <p>分解项目任务，制定实施计划与时间节点</p>
-        </div>
-        <div class="impl-layout">
-          <div class="impl-nav" id="implNav"></div>
-          <div class="impl-content" id="implContent">
-            <div class="impl-empty">请先在「项目设计」中创建项目，或从「我的项目库」选择一个项目进入实施。</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ====== LIBRARY ====== -->
-      <section class="page" id="page-library" style="display:none">
-        <div class="page-header">
-          <h2>我的项目库</h2>
-          <p>管理你创建的所有跨学科项目</p>
-        </div>
-        <div class="lib-layout">
-          <div class="lib-list" id="libList"></div>
-          <div class="lib-detail" id="libDetail">
-            <div class="lib-empty">
-              <div class="empty-icon">&#128218;</div>
-              <p>点击左侧项目查看详情<br>或前往「项目设计」创建新项目</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ====== COMMUNITY ====== -->
-      <section class="page" id="page-community" style="display:none">
-        <div class="page-header">
-          <h2>教研社区</h2>
-          <p>与同行交流跨学科教学经验</p>
-        </div>
+  <!-- ====== COMMUNITY ====== -->
+  <section class="page" id="page-community" style="display:none">
+    <div class="community-layout">
+      <div class="community-main">
         <div class="community-toolbar">
-          <button class="btn btn-primary" id="btnNewPost">&#9998; 发布新话题</button>
+          <h3 class="community-title">教研社区</h3>
+          <button class="btn-new-post" id="btnNewPost">+ 发布新话题</button>
         </div>
         <div class="post-list" id="postList"></div>
-        <div class="modal" id="postModal" style="display:none">
-          <div class="modal-overlay"></div>
-          <div class="modal-body">
-            <h3>发布新话题</h3>
-            <div class="form-row"><label>作者</label><input type="text" id="postAuthor" value="刘翠微"></div>
-            <div class="form-row"><label>标题</label><input type="text" id="postTitle" placeholder="输入标题"></div>
-            <div class="form-row"><label>内容</label><textarea id="postContent" rows="5"></textarea></div>
-            <div class="form-row"><label>标签</label><input type="text" id="postTags" placeholder="如：经验分享"></div>
-            <div class="modal-actions">
-              <button class="btn btn-secondary" id="btnCancelPost">取消</button>
-              <button class="btn btn-primary" id="btnSubmitPost">发布</button>
-            </div>
-          </div>
-        </div>
-      </section>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-logo">跨学科 AI Studio</div>
+      <p class="footer-desc">AI 赋能跨学科项目设计</p>
+    </div>
+    <div class="footer-col">
+      <h4>快速链接</h4>
+      <a href="#" onclick="navigate('dashboard')">首页</a>
+      <a href="#" onclick="navigate('design')">项目设计</a>
+    </div>
+    <div class="footer-col">
+      <h4>联系我们</h4>
+      <a href="#">联系邮箱</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Post Modal -->
+<div class="modal" id="postModal" style="display:none">
+  <div class="modal-overlay"></div>
+  <div class="modal-body">
+    <h3>发布新话题</h3>
+    <div class="form-group"><label>作者</label><input type="text" id="postAuthor" value="刘翠微"></div>
+    <div class="form-group"><label>标题</label><input type="text" id="postTitle" placeholder="输入标题"></div>
+    <div class="form-group"><label>内容</label><textarea id="postContent" rows="5"></textarea></div>
+    <div class="form-group"><label>标签</label><input type="text" id="postTags" placeholder="如：经验分享"></div>
+    <div class="modal-actions">
+      <button class="btn-secondary" id="btnCancelPost">取消</button>
+      <button class="btn-primary" id="btnSubmitPost">发布</button>
     </div>
   </div>
 </div>
 
-<script src="static/js/app.js?v=2"></script>
+<script src="static/js/app.js?v=7"></script>
 </body>
 </html>
