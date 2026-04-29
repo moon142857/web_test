@@ -1,7 +1,33 @@
-const API_BASE = window.location.origin.includes('5000') ? '' : 'http://localhost:5000';
+const API_BASE = '';
 let currentProjectId = null;
 let projectsCache = [];
 let currentGradeFilter = '';
+
+/* ========== MOCK DATA ========== */
+const MOCK_TEMPLATES = [
+  { id: 1, title: '我的小书包', grade: '一年级', category: '生活类', subjects: '劳动教育、美术', image_path: '', description: '整理与归纳能力培养项目' },
+  { id: 2, title: '校园天气站', grade: '二年级', category: '自然类', subjects: '科学、数学', image_path: '', description: '观测记录校园天气变化' },
+  { id: 3, title: '游戏设计师', grade: '三年级', category: '生活类', subjects: '数学、美术、信息技术', image_path: '', description: '设计数学益智游戏' },
+  { id: 4, title: '社区噪音调查', grade: '四年级', category: '环保类', subjects: '科学、数学、语文', image_path: '', description: '调查社区噪音来源与影响' },
+  { id: 5, title: '校园节水行动', grade: '五年级', category: '环保类', subjects: '科学、数学、道德与法治', image_path: '', description: '设计校园节水方案' },
+  { id: 6, title: '家乡文化地图', grade: '六年级', category: '人文类', subjects: '语文、美术、信息技术', image_path: '', description: '绘制家乡文化特色地图' },
+  { id: 7, title: '小小营养师', grade: '三年级', category: '生活类', subjects: '科学、数学、劳动教育', image_path: '', description: '设计一周营养午餐' },
+  { id: 8, title: '桥梁工程师', grade: '四年级', category: '自然类', subjects: '科学、数学、美术', image_path: '', description: '设计并测试桥梁模型' },
+  { id: 9, title: '古诗新唱', grade: '五年级', category: '人文类', subjects: '语文、音乐、美术', image_path: '', description: '为古诗谱曲并创作MV' },
+  { id: 10, title: '昆虫记', grade: '二年级', category: '自然类', subjects: '科学、语文、美术', image_path: '', description: '观察记录校园昆虫' },
+];
+
+const MOCK_POSTS = [
+  { id: 1, author: '张老师', title: '跨学科项目实施中遇到的困难', content: '学生探究阶段容易跑偏，求聚焦方法。各位老师有什么好的策略吗？', tags: '教学困惑', created_at: '2026-04-28T10:00:00' },
+  { id: 2, author: '李老师', title: '关于驱动性问题设计的一点思考', content: '好的驱动性问题能保持学生探究热情。分享我设计的三个原则：真实情境、有挑战性、可探究。', tags: '经验分享', created_at: '2026-04-27T09:30:00' },
+  { id: 3, author: '王老师', title: '第一次尝试PBL项目设计的感受', content: '从一开始的不知所措到慢慢找到节奏，AI工具帮了大忙。', tags: '心得体会', created_at: '2026-04-26T14:00:00' },
+  { id: 4, author: '赵老师', title: '五年级学生的小组合作如何分工', content: '求教各位，五年级做跨学科项目时，小组分工有什么好的做法？', tags: '教学困惑', created_at: '2026-04-25T11:00:00' },
+  { id: 5, author: '陈老师', title: '项目评价量规设计经验', content: '分享一个我设计的评价量规，包含过程性评价和成果评价两部分。', tags: '经验分享', created_at: '2026-04-24T16:00:00' },
+];
+
+const MOCK_PROJECTS = [
+  { id: 1, title: '名著智慧传承人——困境解决锦囊创作行动', grade: '五年级', semester: '下学期', project_type: '跨学科项目', main_subject: '语文 统编版', sub_subjects: '美术、信息技术', topic: '名著智慧传承人', ai_content: '项目背景：本项目面向五年级学生，以语文统编版为主导学科，融合美术与信息技术，通过真实情境驱动学生开展深度探究。\n\n核心问题：\n1. 如何在真实情境中运用多学科知识解决实际问题？\n2. 需要哪些学科知识作为支撑？\n3. 如何设计方案并进行实践验证？\n4. 如何评价项目成果与过程表现？\n\n学习目标：\n1. 掌握语文核心概念与技能\n2. 发展跨学科思维与问题解决能力\n3. 提升团队协作与表达能力\n\n实施建议：建议分四个阶段推进：入境阶段（2课时）→ 探究阶段（6课时）→ 建构阶段（4课时）→ 展示阶段（2课时）。每阶段设置明确的任务单与评价量规。', created_at: '2026-04-29 08:00:00' }
+];
 
 /* ========== ROUTING ========== */
 function init() {
@@ -29,10 +55,15 @@ function navigate(page) {
 }
 
 async function api(path, opts = {}) {
-  const url = `${API_BASE}${path}`;
-  const res = await fetch(url, opts);
-  if (!res.ok) { console.error('API error', res.status); return null; }
-  return res.json();
+  try {
+    const url = `${API_BASE}${path}`;
+    const res = await fetch(url, opts);
+    if (!res.ok) throw new Error(res.status);
+    return res.json();
+  } catch (e) {
+    console.warn('API failed, using mock data:', e.message);
+    return null;
+  }
 }
 
 /* ========== USER ========== */
@@ -49,9 +80,14 @@ async function loadUser() {
 
 /* ========== INSPIRATION ========== */
 async function loadInspiration() {
-  const data = await api(`/api/templates${currentGradeFilter ? '?grade=' + encodeURIComponent(currentGradeFilter) : ''}`);
+  let data = await api(`/api/templates${currentGradeFilter ? '?grade=' + encodeURIComponent(currentGradeFilter) : ''}`);
+  if (!data) {
+    data = currentGradeFilter
+      ? MOCK_TEMPLATES.filter(t => t.grade === currentGradeFilter)
+      : MOCK_TEMPLATES;
+  }
   const grid = document.getElementById('inspirationGrid');
-  if (!data || !grid) return;
+  if (!grid) return;
   grid.innerHTML = data.map(t => `
     <div class="card">
       <div class="card-img">${emojiFor(t.category)}</div>
@@ -95,7 +131,6 @@ document.getElementById('gradeTabs').addEventListener('click', e => {
 /* ========== DESIGN ========== */
 document.getElementById('btnGenerate').addEventListener('click', generateProject);
 document.getElementById('btnSaveDesign').addEventListener('click', saveDesign);
-
 document.getElementById('aiSend').addEventListener('click', sendAiMessage);
 document.getElementById('aiInput').addEventListener('keydown', e => { if (e.key === 'Enter') sendAiMessage(); });
 
@@ -148,6 +183,12 @@ async function saveDesign() {
     alert('已保存到项目库');
     currentProjectId = res.id;
     loadLibrary();
+  } else {
+    // Mock mode: add to local cache
+    const newId = Math.max(...MOCK_PROJECTS.map(p => p.id), 0) + 1;
+    MOCK_PROJECTS.unshift({ ...payload, id: newId, created_at: new Date().toISOString() });
+    alert('已保存到项目库（演示模式）');
+    loadLibrary();
   }
 }
 
@@ -174,8 +215,9 @@ function sendAiMessage() {
 
 /* ========== IMPLEMENT ========== */
 async function loadImplementProjects() {
-  const data = await api('/api/projects');
-  projectsCache = data || [];
+  let data = await api('/api/projects');
+  if (!data) data = MOCK_PROJECTS;
+  projectsCache = data;
   const nav = document.getElementById('implNav');
   if (!nav) return;
   if (!data || data.length === 0) {
@@ -198,9 +240,11 @@ async function openImplement(pid) {
   document.querySelectorAll('.impl-task').forEach(t => t.classList.remove('active'));
   const activeTask = Array.from(document.querySelectorAll('.impl-task')).find(t => t.textContent.includes(projectsCache.find(p => p.id === pid)?.title || ''));
   if (activeTask) activeTask.classList.add('active');
-  
-  const p = await api(`/api/projects/${pid}`);
+
+  let p = await api(`/api/projects/${pid}`);
+  if (!p) p = MOCK_PROJECTS.find(x => x.id === pid) || projectsCache.find(x => x.id === pid);
   if (!p) return;
+
   const content = document.getElementById('implContent');
   const stages = p.stages && p.stages.length ? p.stages : [
     { stage_name: '入境阶段', order_index: 1, driving_question: '你了解项目背景吗？', content: '情境导入，发布项目任务，组建学习小组。' },
@@ -238,8 +282,9 @@ function addTask(pid, sid) {
 
 /* ========== LIBRARY ========== */
 async function loadLibrary() {
-  const data = await api('/api/projects');
-  projectsCache = data || [];
+  let data = await api('/api/projects');
+  if (!data) data = MOCK_PROJECTS;
+  projectsCache = data;
   const list = document.getElementById('libList');
   if (!list) return;
   if (!data || data.length === 0) {
@@ -263,7 +308,8 @@ async function showProjectDetail(pid) {
   document.querySelectorAll('.lib-item').forEach(i => i.classList.remove('active'));
   const el = document.getElementById('lib-item-' + pid);
   if (el) el.classList.add('active');
-  const p = await api(`/api/projects/${pid}`);
+  let p = await api(`/api/projects/${pid}`);
+  if (!p) p = MOCK_PROJECTS.find(x => x.id === pid) || projectsCache.find(x => x.id === pid);
   if (!p) return;
   document.getElementById('libDetail').innerHTML = `
     <h3>${p.title}</h3>
@@ -285,13 +331,18 @@ function enterImplement(pid) {
 
 async function deleteProject(pid) {
   if (!confirm('确定删除该项目？')) return;
-  await api(`/api/projects/${pid}`, { method: 'DELETE' });
+  const res = await api(`/api/projects/${pid}`, { method: 'DELETE' });
+  if (!res) {
+    const idx = MOCK_PROJECTS.findIndex(p => p.id === pid);
+    if (idx >= 0) MOCK_PROJECTS.splice(idx, 1);
+  }
   loadLibrary();
 }
 
 /* ========== COMMUNITY ========== */
 async function loadCommunity() {
-  const data = await api('/api/posts');
+  let data = await api('/api/posts');
+  if (!data) data = MOCK_POSTS;
   const list = document.getElementById('postList');
   if (!list) return;
   if (!data || data.length === 0) { list.innerHTML = '<div style="color:#9ca3af;text-align:center;padding:40px">暂无话题</div>'; return; }
@@ -333,11 +384,15 @@ document.getElementById('btnSubmitPost').addEventListener('click', async () => {
     tags: document.getElementById('postTags').value
   };
   if (!payload.title || !payload.content) { alert('请填写标题和内容'); return; }
-  await api('/api/posts', {
+  const res = await api('/api/posts', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
   });
+  if (!res) {
+    const newId = Math.max(...MOCK_POSTS.map(p => p.id), 0) + 1;
+    MOCK_POSTS.unshift({ ...payload, id: newId, created_at: new Date().toISOString() });
+  }
   modal.style.display = 'none';
   document.getElementById('postTitle').value = '';
   document.getElementById('postContent').value = '';
