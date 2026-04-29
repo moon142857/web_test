@@ -90,7 +90,7 @@ async function loadInspiration() {
   if (!grid) return;
   grid.innerHTML = data.map(t => `
     <div class="card">
-      <div class="card-img">${emojiFor(t.category)}</div>
+      <div class="card-img" data-category="${t.category}">${emojiFor(t.category)}</div>
       <div class="card-body">
         <div class="card-title">${t.title}</div>
         <div class="card-meta">

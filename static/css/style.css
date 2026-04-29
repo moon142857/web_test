@@ -91,7 +91,11 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Ping
 .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
 .card { background: var(--card); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--border); transition: .2s; }
 .card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
-.card-img { height: 140px; background: linear-gradient(135deg, #e0e7ff, #c7d2fe); display: flex; align-items: center; justify-content: center; font-size: 48px; }
+.card-img { height: 140px; display: flex; align-items: center; justify-content: center; font-size: 44px; }
+.card-img[data-category="生活类"] { background: linear-gradient(135deg, #fef3c7, #fde68a); }
+.card-img[data-category="自然类"] { background: linear-gradient(135deg, #d1fae5, #a7f3d0); }
+.card-img[data-category="环保类"] { background: linear-gradient(135deg, #cffafe, #99f6e4); }
+.card-img[data-category="人文类"] { background: linear-gradient(135deg, #ede9fe, #ddd6fe); }
 .card-body { padding: 18px; }
 .card-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
 .card-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
